@@ -1,12 +1,12 @@
-volumes:
-  etc_wireguard:
-
 services:
-  amnezia-wg-easy:
+  awg:
+    build:
+      context: .
+      dockerfile: Dockerfile
     env_file:
       - .env
     image: ghcr.io/w0rng/amnezia-wg-easy
-    container_name: amnezia-wg-easy
+    container_name: awg
     volumes:
       - etc_wireguard:/etc/wireguard
     ports:
@@ -22,3 +22,11 @@ services:
       - net.ipv4.conf.all.src_valid_mark=1
     devices:
     - /dev/net/tun:/dev/net/tun
+
+volumes:
+  etc_wireguard:
+
+networks:
+   awg:
+     name: awg
+     external: true
