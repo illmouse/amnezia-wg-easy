@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
     env_file:
       - .env
-    image: ghcr.io/w0rng/amnezia-wg-easy
+    # image: ghcr.io/w0rng/amnezia-wg-easy
     container_name: awg
     volumes:
       - etc_wireguard:/etc/wireguard
@@ -22,6 +22,8 @@ services:
       - net.ipv4.conf.all.src_valid_mark=1
     devices:
     - /dev/net/tun:/dev/net/tun
+    networks:
+      awg:
 
 volumes:
   etc_wireguard:
@@ -29,4 +31,3 @@ volumes:
 networks:
    awg:
      name: awg
-     external: true
